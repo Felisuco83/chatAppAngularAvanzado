@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "chatapp-40c7c": {
+      "hosting": {
+        "proyectoChatApp": [
+          "chatapp-40c7c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "chatapp-40c7c"
+  }
+}

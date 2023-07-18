@@ -1,0 +1,9 @@
+{
+  "hosting": [
+    {
+      "target": "proyectoChatApp",
+      "source": ".",
+      "frameworksBackend": {}
+    }
+  ]
+}
