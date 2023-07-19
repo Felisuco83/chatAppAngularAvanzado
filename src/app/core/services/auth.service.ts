@@ -1,7 +1,9 @@
 import {
   Auth,
+  GoogleAuthProvider,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
 } from '@angular/fire/auth';
 
@@ -12,10 +14,14 @@ import { LoginData } from '../../interfaces/login-data.interface';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private auth: Auth) {}
+  constructor(private auth: Auth) { }
 
   login({ email, password }: LoginData) {
     return signInWithEmailAndPassword(this.auth, email, password);
+  }
+
+  loginWithGoogle() {
+    return signInWithPopup(this.auth, new GoogleAuthProvider());
   }
 
   register({ email, password }: LoginData) {
