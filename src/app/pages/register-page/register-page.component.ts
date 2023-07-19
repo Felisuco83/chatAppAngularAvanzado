@@ -5,11 +5,11 @@ import { LoginData } from 'src/app/interfaces/login-data.interface';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss'],
+  selector: 'app-register-page',
+  templateUrl: './register-page.component.html',
+  styleUrls: ['./register-page.component.scss'],
 })
-export class LoginPageComponent implements OnInit {
+export class RegisterPageComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router
@@ -17,10 +17,10 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  login(loginData: LoginData) {
+  register(data: LoginData) {
     this.authService
-      .login(loginData)
-      .then(() => this.router.navigate(['/dashboard']))
+      .register(data)
+      .then(() => this.router.navigate(['/login']))
       .catch((e) => console.log(e.message));
   }
 }
