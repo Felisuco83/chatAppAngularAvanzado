@@ -15,13 +15,26 @@ export class LoginPageComponent implements OnInit {
     private readonly router: Router
   ) { }
 
+  loginError: string;
+
   ngOnInit(): void { }
 
   login(loginData: LoginData) {
     this.authService
       .login(loginData)
       .then(() => this.router.navigate(['/dashboard']))
-      .catch((e) => console.log(e.message));
+      .catch(
+        (e) => {
+          console.log(e.message);
+          if (e.message.includes("user-not-found")) {
+            this.loginError = "Usuario no encontrado";
+          } else if (e.message.includes('wrong-password')) {
+            this.loginError = "Password inválido";
+          } else {
+            this.loginError = "Error desconocido";
+          }
+        }
+      );
   }
 
   loginWithGoogle() {

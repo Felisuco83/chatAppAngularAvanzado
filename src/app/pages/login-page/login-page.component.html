@@ -11,9 +11,12 @@
             <h1>Login</h1>
             <button class="mat-raised-button" (click)="loginWithGoogle()">
                 Login con Google
-            </button>
+            </button><br />
             <h5>Login con tu email</h5>
             <login-form (formData)="login($event)"></login-form>
+            <mat-error *ngIf="loginError">
+                {{loginError}}
+            </mat-error>
         </div>
     </div>
 </div>

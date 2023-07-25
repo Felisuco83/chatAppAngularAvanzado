@@ -4,6 +4,9 @@
             <h1>Bienvenido al chat de Félix</h1>
             <h5>Registrate con tu email</h5>
             <login-form (formData)="register($event)"></login-form>
+            <mat-error *ngIf="registerError">
+                {{registerError}}
+            </mat-error>
         </div>
         <div class="text-container">
             <h1>Hola Amigo</h1>

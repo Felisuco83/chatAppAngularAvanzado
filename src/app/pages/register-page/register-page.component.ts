@@ -15,12 +15,28 @@ export class RegisterPageComponent implements OnInit {
     private readonly router: Router
   ) { }
 
+  registerError: string;
+
   ngOnInit(): void { }
 
-  register(data: LoginData) {
+  register(loginData: LoginData) {
     this.authService
-      .register(data)
-      .then(() => this.router.navigate(['/login']))
-      .catch((e) => console.log(e.message));
+      .register(loginData)
+      .then(() => {
+        // this.router.navigate(['/login']);
+        this.authService
+          .login(loginData)
+          .then(() => this.router.navigate(['/dashboard']))
+      })
+      .catch((e) => {
+        console.log(e.message);
+        if (e.message.includes("weak-password")) {
+          this.registerError = "El password debe tener al menos 6 caracteres";
+        } else if (e.message.includes('already-in-use')) {
+          this.registerError = "Ya existe un usuario registrado con ese email";
+        } else {
+          this.registerError = "Error desconocido";
+        }
+      });
   }
 }
