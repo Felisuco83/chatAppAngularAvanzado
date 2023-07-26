@@ -9,9 +9,13 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 import { provideFirestore, getFirestore } from '@angular/fire/firestore';
 import { provideStorage, getStorage } from '@angular/fire/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HomePageComponent } from './pages/home-page/home-page/home-page.component';
+import { ProfilePageComponent } from './pages/profile-page/profile-page/profile-page.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomePageComponent,
+    ProfilePageComponent,
   ],
   imports: [
     BrowserModule,

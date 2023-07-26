@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-
 import { AuthService } from 'src/app/core/services/auth.service';
-import { LoginData } from 'src/app/interfaces/login-data.interface';
 import { Router } from '@angular/router';
+import { RegisterData } from 'src/app/interfaces/register-data.interface';
+import { FireStoreServiceService } from 'src/app/services/firestore-service.service';
 
 @Component({
   selector: 'app-register-page',
@@ -12,21 +12,22 @@ import { Router } from '@angular/router';
 export class RegisterPageComponent implements OnInit {
   constructor(
     private readonly authService: AuthService,
-    private readonly router: Router
+    private readonly router: Router,
+    private readonly fireStoreService: FireStoreServiceService
   ) { }
 
   registerError: string;
 
   ngOnInit(): void { }
 
-  register(loginData: LoginData) {
+  register(registerData: RegisterData) {
     this.authService
-      .register(loginData)
-      .then(() => {
-        // this.router.navigate(['/login']);
+      .register({ email: registerData.email, password: registerData.password })
+      .then((userCredential) => {
         this.authService
-          .login(loginData)
+          .login({ email: registerData.email, password: registerData.password })
           .then(() => this.router.navigate(['/dashboard']))
+        this.fireStoreService.create({ Id: userCredential.user.uid, UserName: registerData.fullName })
       })
       .catch((e) => {
         console.log(e.message);
