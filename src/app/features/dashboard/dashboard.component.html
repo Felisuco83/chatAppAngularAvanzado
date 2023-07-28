@@ -46,7 +46,7 @@
     <mat-sidenav #sidenav mode="side" [class.mat-elevation-z4]="true" class="app-sidenav" opened>
         <mat-nav-list class="ninety">
             <mat-list-item routerLink="#">
-                <mat-icon>dashboard</mat-icon><span>Dashboard</span>
+                <mat-icon>dashboard</mat-icon><span>{{this.userName}}</span>
             </mat-list-item>
             <mat-nav-list>
                 <a mat-list-item> <mat-icon>home</mat-icon>
@@ -63,9 +63,9 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <router-outlet>
-            <div class="app-sidenav-content">
+            <!-- <div class="app-sidenav-content">
                 Components open here
-            </div>
+            </div> -->
         </router-outlet>
     </mat-sidenav-content>
 </mat-sidenav-container>

@@ -1,6 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
+//Redux imports
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools'
+import { Rootreducer } from './store/reducers/rootReducer';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
@@ -24,7 +29,9 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page/profile-
     provideAuth(() => getAuth()),
     provideFirestore(() => getFirestore()),
     provideStorage(() => getStorage()),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot(Rootreducer, {}),
+    StoreDevtoolsModule.instrument({ maxAge: 20 })
   ],
   providers: [],
   bootstrap: [AppComponent]

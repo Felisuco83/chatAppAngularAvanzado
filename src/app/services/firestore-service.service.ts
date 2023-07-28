@@ -27,9 +27,13 @@ export class FireStoreServiceService {
   getAll() {
     return collectionData(this.userCollection) as Observable<UserData[]>;
   }
+
   get(id: string) {
-    const userDocumentReference = doc(this.firestore, `usuarios/${id}`);
+    const userDocumentReference = doc(this.firestore, 'usuarios', id);
     return docData(userDocumentReference);
+    // userDocData.subscribe()
+    // console.log(userDocData);
+    // return userDocData as Observable<UserData>;
   }
 
   create(user: UserData) {
@@ -45,7 +49,7 @@ export class FireStoreServiceService {
   }
 
   delete(id: string) {
-    const pokemonDocumentReference = doc(this.firestore, `usuarios/${id}`);
-    return deleteDoc(pokemonDocumentReference);
+    const userDocumentReference = doc(this.firestore, `usuarios/${id}`);
+    return deleteDoc(userDocumentReference);
   }
 }
