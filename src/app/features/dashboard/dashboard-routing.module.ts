@@ -11,6 +11,11 @@ const routes: Routes = [
     children: [
       { path: 'home', component: HomePageComponent },
       { path: 'profile', component: ProfilePageComponent },
+      {
+        path: '**',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      }
       // Add more child routes as needed
     ]
   }

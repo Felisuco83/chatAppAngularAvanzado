@@ -16,11 +16,21 @@ import { provideStorage, getStorage } from '@angular/fire/storage';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePageComponent } from './pages/home-page/home-page/home-page.component';
 import { ProfilePageComponent } from './pages/profile-page/profile-page/profile-page.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { ProfileFormComponent } from './components/profile-form/profile-form.component';
+import { MessageFormComponent } from './components/message-form/message-form.component';
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     ProfilePageComponent,
+    ProfileFormComponent,
+    MessageFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -31,7 +41,13 @@ import { ProfilePageComponent } from './pages/profile-page/profile-page/profile-
     provideStorage(() => getStorage()),
     BrowserAnimationsModule,
     StoreModule.forRoot(Rootreducer, {}),
-    StoreDevtoolsModule.instrument({ maxAge: 20 })
+    StoreDevtoolsModule.instrument({ maxAge: 20 }),
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    ReactiveFormsModule,
+    FormsModule,
+    MatIconModule
   ],
   providers: [],
   bootstrap: [AppComponent]

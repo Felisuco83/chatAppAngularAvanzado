@@ -1,0 +1,38 @@
+<form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field class="form-control">
+        <mat-label>Nombre Completo</mat-label>
+        <input matInput formControlName="fullName" type="text" required />
+        <mat-error *ngIf="fullName?.hasError('required')">
+            Nombre completo es un campo requerido
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="text" required />
+        <mat-error *ngIf="email?.hasError('required')">
+            Email es un campo requerido
+        </mat-error>
+        <mat-error *ngIf="email?.hasError('email')">
+            Email no válido, por favor introduzca un email válido.
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+        <mat-label>Contraseña Antigua</mat-label>
+        <input matInput formControlName="oldPassword" type="password" required />
+        <mat-error *ngIf="oldPassword?.hasError('required')">
+            Contraseña Antigua es un campo requerido
+        </mat-error>
+    </mat-form-field>
+    <mat-form-field class="form-control">
+        <mat-label>Contraseña Nueva</mat-label>
+        <input matInput formControlName="newPassword" type="password" required />
+        <mat-error *ngIf="newPassword?.hasError('required')">
+            Contraseña Nueva es un campo requerido
+        </mat-error>
+    </mat-form-field>
+    <div class="form-footer">
+        <button [disabled]="form.invalid" mat-raised-button type="submit">
+            Enviar
+        </button>
+    </div>
+</form>

@@ -12,6 +12,7 @@ import {
 import { Firestore, collectionData, docData } from '@angular/fire/firestore';
 import { UserData } from '../interfaces/user-data.interface';
 import { Observable } from 'rxjs';
+import { MessageData } from '../interfaces/message-data.interface';
 
 
 @Injectable({
@@ -51,5 +52,12 @@ export class FireStoreServiceService {
   delete(id: string) {
     const userDocumentReference = doc(this.firestore, `usuarios/${id}`);
     return deleteDoc(userDocumentReference);
+  }
+
+  sendMessage(messageData: MessageData) {
+    // return setDoc(doc(this.firestore, 'mensajes', ''), { mensaje: messageData.mensaje, usuario: messageData.usuario, fecha: '' });
+    return addDoc(collection(this.firestore, 'mensajes'), messageData);
+
+    // return setDoc(doc(this.firestore, 'mensajes'), { messageData });
   }
 }

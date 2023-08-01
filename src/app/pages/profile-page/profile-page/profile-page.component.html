@@ -1,1 +1,12 @@
-<p>profile-page works!</p>
+<div class="background">
+    <div class="login-container">
+        <div class="form-container">
+            <mat-icon class="largeIcon">person</mat-icon>
+            <h1>Editar perfil</h1>
+            <app-profile-form (formData)="editProfile($event)"></app-profile-form>
+            <mat-error *ngIf="profileError">
+                {{profileError}}
+            </mat-error>
+        </div>
+    </div>
+</div>

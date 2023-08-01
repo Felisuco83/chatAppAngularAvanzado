@@ -33,7 +33,7 @@ export class LoginPageComponent implements OnInit {
       .then((loginCredentials: UserCredential) => {
         const _this = this;
         this.fireStoreService.get(loginCredentials.user.uid).subscribe(res => {
-          console.log(res['UserName']);
+          // console.log(res['UserName']);
           this.reduxStore.updateState({ type: ACTION_SET_USERNAME, payload: res['UserName'] });
           this.router.navigate(['/dashboard'])
         });

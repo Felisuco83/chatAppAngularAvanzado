@@ -1,0 +1,32 @@
+<div class="chat-container">
+    <div class="messages">
+        <!-- Dummy chat messages -->
+        <div class="message">User 1: Hi there!</div>
+        <div class="message">User 2: Hello! How are you?</div>
+        <div class="message">User 1: I'm doing great, thanks!</div>
+        <div class="message">User 2: That's awesome!</div>
+    </div>
+
+    <!-- <div class="input-container">
+      <mat-form-field class="message-input">
+        <input matInput placeholder="Type your message..." />
+      </mat-form-field>
+      <button mat-icon-button color="primary" class="send-button">
+        <mat-icon>send</mat-icon>
+      </button>
+    </div> -->
+    <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="form-control">
+            <mat-label>Mensaje</mat-label>
+            <input matInput formControlName="message" type="text" required />
+            <mat-error *ngIf="message?.hasError('required')">
+                Mensaje es un campo requerido
+            </mat-error>
+        </mat-form-field>
+        <div class="form-footer">
+            <button [disabled]="form.invalid" mat-raised-button type="submit">
+                Enviar
+            </button>
+        </div>
+    </form>
+</div>
