@@ -2,9 +2,9 @@
     <div class="login-container">
         <div class="form-container">
             <mat-icon class="largeIcon">person</mat-icon>
-            <h1>Editar perfil</h1>
+            <h1 i18n>Editar perfil</h1>
             <app-profile-form (formData)="editProfile($event)"></app-profile-form>
-            <mat-error *ngIf="profileError">
+            <mat-error *ngIf="profileError" i18n>
                 {{profileError}}
             </mat-error>
         </div>

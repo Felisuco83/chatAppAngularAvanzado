@@ -1,13 +1,13 @@
 <form class="form" [formGroup]="form" (ngSubmit)="onSubmit()">
     <mat-form-field class="form-control">
-        <mat-label>Mensaje</mat-label>
+        <mat-label i18n>Mensaje</mat-label>
         <input matInput formControlName="message" type="text" required />
-        <mat-error *ngIf="message?.hasError('required')">
+        <mat-error *ngIf="message?.hasError('required')" i18n>
             Mensaje es un campo requerido
         </mat-error>
     </mat-form-field>
     <div class="form-footer">
-        <button [disabled]="form.invalid" mat-raised-button type="submit">
+        <button [disabled]="form.invalid" mat-raised-button type="submit" i18n>
             Enviar
         </button>
     </div>

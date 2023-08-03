@@ -16,6 +16,11 @@
           "strict": true
         }
       },
+      "i18n": {
+        "locales": {
+          "en": "/src/locale/messages.en.xlf"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -68,6 +73,11 @@
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true
+            },
+            "en": {
+              "localize": [
+                "en"
+              ]
             }
           },
           "defaultConfiguration": "production"
@@ -80,6 +90,9 @@
             },
             "development": {
               "browserTarget": "proyectoChatApp:build:development"
+            },
+            "en": {
+              "browserTarget": "proyectoChatApp:build:development,en"
             }
           },
           "defaultConfiguration": "development"
