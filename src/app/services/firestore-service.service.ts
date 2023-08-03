@@ -7,9 +7,9 @@ import {
   deleteDoc,
   doc,
   setDoc,
-  updateDoc,
+  updateDoc
 } from '@firebase/firestore';
-import { Firestore, collectionData, docData } from '@angular/fire/firestore';
+import { Firestore, collectionData, docData, query, orderBy, limit } from '@angular/fire/firestore';
 import { UserData } from '../interfaces/user-data.interface';
 import { Observable } from 'rxjs';
 import { MessageData } from '../interfaces/message-data.interface';
@@ -20,21 +20,25 @@ import { MessageData } from '../interfaces/message-data.interface';
 })
 export class FireStoreServiceService {
   private userCollection: CollectionReference<DocumentData>;
+  private messageCollection: CollectionReference<DocumentData>;
 
   constructor(private readonly firestore: Firestore) {
     this.userCollection = collection(this.firestore, 'usuarios');
+    this.messageCollection = collection(this.firestore, 'mensajes');
   }
 
   getAll() {
     return collectionData(this.userCollection) as Observable<UserData[]>;
   }
 
+  getLatest5Messages(): Observable<MessageData[]> {
+    const q = query(this.messageCollection, orderBy('fecha', 'desc'), limit(5));
+    return collectionData(q) as Observable<MessageData[]>;
+  }
+
   get(id: string) {
     const userDocumentReference = doc(this.firestore, 'usuarios', id);
     return docData(userDocumentReference);
-    // userDocData.subscribe()
-    // console.log(userDocData);
-    // return userDocData as Observable<UserData>;
   }
 
   create(user: UserData) {
@@ -55,9 +59,6 @@ export class FireStoreServiceService {
   }
 
   sendMessage(messageData: MessageData) {
-    // return setDoc(doc(this.firestore, 'mensajes', ''), { mensaje: messageData.mensaje, usuario: messageData.usuario, fecha: '' });
-    return addDoc(collection(this.firestore, 'mensajes'), messageData);
-
-    // return setDoc(doc(this.firestore, 'mensajes'), { messageData });
+    addDoc(collection(this.firestore, 'mensajes'), messageData);
   }
 }

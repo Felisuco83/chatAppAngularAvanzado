@@ -1,0 +1,32 @@
+.chat-container {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+.messages {
+    margin-bottom: 10px;
+}
+
+.message {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+}
+
+.message-input {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.send-button {
+    height: 40px;
+    width: 40px;
+}

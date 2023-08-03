@@ -1,2 +1,10 @@
-<p>home-page works!</p>
-<app-message-form (formData)="sendMessage($event)"></app-message-form>
+<div class="chat-container">
+    <div class="messages" *ngIf="messageCollection">
+        <!-- Dummy chat messages -->
+        <div class="message" *ngFor="let item of messageCollection.reverse(); index as i">
+            {{item.usuario}}: {{item.mensaje}}
+        </div>
+    </div>
+
+    <app-message-form (formData)="sendMessage($event)"></app-message-form>
+</div>

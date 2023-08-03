@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Timestamp } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
 import { MessageData } from 'src/app/interfaces/message-data.interface';
 import { FireStoreServiceService } from 'src/app/services/firestore-service.service';
 import { StoreService } from 'src/app/services/store.service';
@@ -14,10 +15,18 @@ export class HomePageComponent implements OnInit {
   constructor(private readonly fireStoreService: FireStoreServiceService, private reduxStore: StoreService) { }
 
   userName: string = '';
+  messageCollection: MessageData[];
 
   ngOnInit(): void {
     this.reduxStore.getState('userNameState').subscribe((state: any) => {
       this.userName = state.userName;
+    });
+    this.updateMessages();
+  }
+
+  updateMessages() {
+    this.fireStoreService.getLatest5Messages().subscribe((messageData: MessageData[]) => {
+      this.messageCollection = messageData;
     });
   }
 
